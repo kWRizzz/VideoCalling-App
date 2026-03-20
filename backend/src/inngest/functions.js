@@ -9,7 +9,7 @@ const syncUser = inngest.createFunction(
     async ({ event }) => {
 
         await connectDB()
-
+        
         const { id, email_addresses, first_name, last_name, image_url } = event.data
 
         await userModel.findOneAndUpdate(

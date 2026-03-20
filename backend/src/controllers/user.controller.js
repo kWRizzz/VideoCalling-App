@@ -48,6 +48,32 @@ const userRegister= async (req,res) => {
     }
 }
 
+const userLogin= async (req,res) => {
+    try {
+        const {email,password}= req.body
+
+        if(!email || !password) return res.status(400).json({
+            message:"Enter All Credentials"
+        })
+
+        const isExist= await userModel.findOne({
+            email
+        })
+
+        if(!isExist) return res.status(200).json({
+            message:"No User Has Found "
+        })
+
+        
+
+    } catch (error) {
+        console.log(`Some Error Has Occured While Loggin You In  ${error}`);
+        res.status(400).json({
+            message:`error in login ${error}`
+        })
+    }
+}
+
 module.exports={
     userRegister
 }
