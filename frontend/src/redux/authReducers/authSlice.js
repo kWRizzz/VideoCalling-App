@@ -19,7 +19,7 @@ export const loginUser= createAsyncThunk(
 export const registerUser= createAsyncThunk(
     "auth/registerUser",
     async (userData) => {
-        const result= await fetch("",{
+        const result= await fetch("http://localhost:3000/api/user/register",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
