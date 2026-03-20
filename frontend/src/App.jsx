@@ -1,8 +1,12 @@
 import React from 'react'
+import SignIn from './pages/auth/SignIn'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+       
+        <SignIn/>
+    </div>
   )
 }
 
