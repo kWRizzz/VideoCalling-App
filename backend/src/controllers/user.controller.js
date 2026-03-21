@@ -1,7 +1,7 @@
 const userModel=require('../models/User')
 const passwordHashing = require('../utils/passwordHashing.utils')
 const generateToken = require('../utils/token.utils')
-
+const tokenModel= require('../models/tokens.model')
 
 
 const userRegister= async (req,res) => {
@@ -56,15 +56,17 @@ const userLogin= async (req,res) => {
             message:"Enter All Credentials"
         })
 
-        const isExist= await userModel.findOne({
+        const user= await userModel.findOne({
             email
         })
 
-        if(!isExist) return res.status(200).json({
+        if(!user) return res.status(200).json({
             message:"No User Has Found "
         })
 
-        
+        res.status(200).json({
+            message:"My User Logged In"
+        })
 
     } catch (error) {
         console.log(`Some Error Has Occured While Loggin You In  ${error}`);
@@ -74,6 +76,33 @@ const userLogin= async (req,res) => {
     }
 }
 
+
+
+const userLogout= async (req,res) => {
+    try {
+        const token = req.cookies.token
+
+        if(!token) return res.status(400).json({
+            message:"no Token Has Been Found From The DataBase"
+        })
+
+        await tokenModel.create({token})
+
+        res.clearCookie("token")
+        res.status(200).json({
+            message:"Cookie destroyed"
+        })
+
+    } catch (error) {
+        console.log(`Some Error Has Been Found While Loggin User Out ${error}`);
+        res.status(400).json({
+            message:`error in logout ${error}`
+        })
+    }
+}
+
 module.exports={
-    userRegister
+    userRegister,
+    userLogin,
+    userLogout
 }
