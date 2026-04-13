@@ -39,7 +39,7 @@ export default function CodeEditorPrototype() {
   }, [currentLineIndex]);
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto">
+    <div className="relative w-2/3 max-w-5xl mx-auto">
       <div className="bg-surface-container-low rounded-xl p-4 shadow-2xl flex flex-col h-[500px] md:h-[600px] text-left border border-white/5 relative z-10">
         {/* Editor header */}
         <div className="flex items-center px-4 pb-4 border-b border-white/5 shrink-0">
@@ -108,8 +108,8 @@ export default function CodeEditorPrototype() {
                     const visibleText = isPast
                       ? line.text
                       : isCurrent
-                      ? line.text.slice(0, currentCharIndex)
-                      : "";
+                        ? line.text.slice(0, currentCharIndex)
+                        : "";
 
                     return (
                       <div key={index} className="min-h-7">
@@ -140,6 +140,39 @@ export default function CodeEditorPrototype() {
               <div className="text-green-400">Test 5: PASSED (11ms)</div>
             </div>
           </div>
+        </div>
+      </div>
+      {/* floating window annimation  */}
+
+      <div
+        className=' absolute z-20 -top-12 -right-2 md:-top-20 md:-right-16   '
+      >
+        <div
+          className='w-32 h-44 md:h-64 md:w-48 bg-surface-container-highest/60 backdrop-blur-xl relative flex flex-col justify-end items-center rounded-lg border border-white/10 shadow-[0_24px_48px_rgba(168,85,247,0.15)] overflow-hidden'
+        >
+          {/* userPhoto */}
+          <div
+            className=' absolute inset-0 bg-gradient-to-t from-black/80 bg-surface-container-low flex justify-center items-center'
+          >
+            <svg className="w-16 h-16 text-gray-600 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+
+
+          </div>
+
+                  {/* buttons */}
+                  <div
+                    className=' relative z-10 w-[90%]  rounded-full bg-surface-container/90 backdrop-blur-md  flex justify-center items-center px-2 space-x-2 py-1.5 mb-3  border border-white/10 shadow-lg'
+                  >
+                    <div
+                      className=' w-2 h-2 rounded-full bg-green-500  shadow-[0_0_8px_#22c55e]'
+                    ></div>
+                    <span
+                      className=' text-[9px] md:text-xs text-white font-display tracking-widest'
+                    >
+                      SARAH (INTERVIEWER)
+                    </span>
+                  </div>
+
         </div>
       </div>
     </div>
